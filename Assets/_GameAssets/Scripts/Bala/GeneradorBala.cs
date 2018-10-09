@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GeneradorBala : MonoBehaviour {
 
-    [SerializeField] int velocidadInicial = 5;
     [SerializeField] GameObject prefabBala;
 
 	// Use this for initialization
@@ -14,12 +13,12 @@ public class GeneradorBala : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print("Dispara");
+            GameObject nuevaBala = Instantiate(prefabBala, transform.position, transform.rotation);
+            nuevaBala.GetComponent<Rigidbody>().AddForce(Vector3.forward * 100);
+        }
 	}
 
-    // Inovoación de la bala
-    private void GenerarBala()
-    {
-
-    }
-}
+  }

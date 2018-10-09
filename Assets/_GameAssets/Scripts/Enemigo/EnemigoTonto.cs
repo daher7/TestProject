@@ -25,13 +25,10 @@ public class EnemigoTonto : EnemigoMovil {
            
             collision.gameObject.GetComponent<Personaje>().RecibirDanyo(danyo);
             estaVivo = false;
-            // Vamos a llamar a la explosion
-            ParticleSystem ps = Instantiate(psExplosion, transform);
+            // Vamos a llamar a la explosion y el sistema de particulas no depende de su generador
+            ParticleSystem ps = Instantiate(psExplosion, transform.position, Quaternion.identity);
             ps.Play();
-
-            GetComponent<Renderer>().enabled = false;
-            // El enemigo desaparece tras la explosion
-            Invoke("DestruirEnemigo",1);
+            DestruirEnemigo();
         }
     }
 

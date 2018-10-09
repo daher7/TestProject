@@ -9,7 +9,11 @@ public class EnemigoMovil : Enemigo {
     [SerializeField] protected int speed = 1;
     [SerializeField] protected int inicioRotacion = 1;
     [SerializeField] protected int tiempoEntreRotacion = 2;
-   
+
+    private void Start()
+    {
+        InvokeRepeating("RotarAleatoriamente", inicioRotacion, tiempoEntreRotacion);
+    }
 
     protected void RotarAleatoriamente() {
         float rotation = Random.Range(0f, 180f);
@@ -22,4 +26,21 @@ public class EnemigoMovil : Enemigo {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         } 
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        RotarAleatoriamente();
+
+        if (collision.gameObject.name == "Personaje")
+        {
+            collision.gameObject.GetComponent<Personaje>().RecibirDanyo(danyo);
+            estaVivo = false;
+            // Vamos a llamar a la explosion y el sistema de particulas no depende de su generador
+            ParticleSystem ps = Instantiate(psExplosion, transform.position, Quaternion.identity);
+            ps.Play();
+            DestruirEnemigo();
+        }
+    }
+
 }

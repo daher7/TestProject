@@ -42,7 +42,6 @@ public class Enemigo : MonoBehaviour {
         estaVivo = false;
         // Explosionamos al enemigo
         ParticleSystem ps = Instantiate(psExplosion, transform.position, Quaternion.identity);
-        // Instantiate(explosionEnemigo, transform.position, Quaternion.identity);
         ps.Play();
         // El enemigo desaparece del juego
         Destroy(this.gameObject);

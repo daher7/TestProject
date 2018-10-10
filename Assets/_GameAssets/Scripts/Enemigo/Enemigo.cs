@@ -5,8 +5,7 @@ using UnityEngine;
 public class Enemigo : MonoBehaviour {
 
     // Declaracion de Variables:
-
-    
+        
     [Header("ESTADO")]
     [SerializeField] protected bool estaVivo = true;
     [SerializeField] int vida = 10;
@@ -22,9 +21,14 @@ public class Enemigo : MonoBehaviour {
     [SerializeField] protected ParticleSystem psExplosion; // Creamos en 
 
     // Declaración de Métodos(funciones):
-    public int DetectarDistanciaAlPersonaje() {
+    
+    public void RecibirDanyo(int danyo) {
+        vida -= danyo;
 
-        return 0;
+        if (vida <= 0) {
+            vida = 0;
+            Morir();
+        }
     }
 
     public void Morir() {
@@ -34,32 +38,26 @@ public class Enemigo : MonoBehaviour {
          * 2. Sistema de particulas.
          * 3. Gritos horribles de dolor/ Despedirse de la vida
          * 4. Destruir el Enemigo.
-         * 5. ¿Aumentar salud? ¿Recompensa?
          */
         estaVivo = false;
         // Explosionamos al enemigo
+        ParticleSystem ps = Instantiate(psExplosion, transform.position, Quaternion.identity);
         // Instantiate(explosionEnemigo, transform.position, Quaternion.identity);
+        ps.Play();
         // El enemigo desaparece del juego
         Destroy(this.gameObject);
+        // Vamos a llamar a la explosion y el sistema de particulas no depende de su generador            
     }
 
     public void Atacar() {
 
     }
 
-    public void RecibirDanyo(int danyo) {
-        vida -= danyo;
 
-        if(vida <= 0) {
-            vida = 0;
-            if (estaVivo) Morir();
-        }
+    public int DetectarDistanciaAlPersonaje() {
+
+        return 0;
     }
 
-
-    protected void DestruirEnemigo()
-    {
-        Destroy(this.gameObject);
-    }
 
 }

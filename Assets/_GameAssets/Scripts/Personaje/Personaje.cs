@@ -5,7 +5,7 @@ using UnityEngine;
 public class Personaje : MonoBehaviour {
 
     private const int NUM_ARMAS = 4;
-    private int armaActiva = 0;
+    private int armaActiva = 3;
     [SerializeField] bool estaVivo;
     [Header("ESTADO")]
     [SerializeField] int vidaActual;

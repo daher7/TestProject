@@ -5,6 +5,7 @@ using UnityEngine;
 public class GeneradorBala : MonoBehaviour {
 
     [SerializeField] GameObject prefabBala;
+    [SerializeField] int fuerzaEmpuje = 75;
 
 	// Use this for initialization
 	void Start () {
@@ -15,9 +16,10 @@ public class GeneradorBala : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            
             print("Dispara");
             GameObject nuevaBala = Instantiate(prefabBala, transform.position, transform.rotation);
-            nuevaBala.GetComponent<Rigidbody>().AddForce(Vector3.forward * 100);
+            nuevaBala.GetComponent<Rigidbody>().AddForce(Vector3.forward * fuerzaEmpuje);
         }
 	}
 

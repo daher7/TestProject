@@ -115,7 +115,7 @@ MonoBehaviour:
   vida: 10
   distanciaDeteccion: 5
   danyo: 2
-  personaje: {fileID: 0}
+  personaje: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   psExplosion: {fileID: 19814690, guid: cd4d7020429cde74db076ffa72495419, type: 2}
   speed: 10
   inicioRotacion: 1

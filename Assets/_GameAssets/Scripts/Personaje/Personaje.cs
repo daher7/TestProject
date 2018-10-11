@@ -7,11 +7,13 @@ public class Personaje : MonoBehaviour {
     private const int NUM_ARMAS = 4;
     private int armaActiva = 3;
     [SerializeField] bool estaVivo;
+
     [Header("ESTADO")]
     [SerializeField] int vidaActual;
     [SerializeField] int vidaMaxima;
+
     [Header("ARSENAL")]
-    [SerializeField] GameObject[] armas = new GameObject[NUM_ARMAS];
+    [SerializeField] Arma[] armas = new Arma[NUM_ARMAS];
     [SerializeField] TextMesh tm;
     
     // METODOS GENERALES
@@ -21,13 +23,24 @@ public class Personaje : MonoBehaviour {
 
     private void Update() {
         tm.text = "" + vidaActual;
+
+        // Disparar el arma
+        if (Input.GetMouseButtonDown(0)) {
+            Disparar();
+        }
+
+        // Selección de Armas
         if(Input.GetKeyDown(KeyCode.Alpha1)){
-            ActivarArma(0);
+            armaActiva = 0;
+            ActivarArma(armaActiva);
         } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            armaActiva = 1;
             ActivarArma(1);
         } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            armaActiva = 2;
             ActivarArma(2);
         } else if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            armaActiva = 3;
             ActivarArma(3);
         } 
     }
@@ -35,17 +48,18 @@ public class Personaje : MonoBehaviour {
     // METODOS PROPIOS
     public void ActivarArma(int armaActiva) {
         DesactivarArmas();
-        armas[armaActiva].SetActive(true);
+        armas[armaActiva].gameObject.SetActive(true);
     }
 
     // Desactivacion del arma
     private void DesactivarArmas() {
         foreach (var arma in armas) {
-            arma.SetActive(false);
+            arma.gameObject.SetActive(false);
         }
     }
-    public void Atacar() {
 
+    public void Disparar() {
+        armas[armaActiva].ApretarGatillo();
     }
 
     public void Morir() {

@@ -14,12 +14,12 @@ public class GeneradorBala : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             
             print("Dispara");
             GameObject nuevaBala = Instantiate(prefabBala, transform.position, transform.rotation);
-            nuevaBala.GetComponent<Rigidbody>().AddForce(Vector3.forward * fuerzaEmpuje);
+            nuevaBala.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * fuerzaEmpuje);
         }
 	}
 

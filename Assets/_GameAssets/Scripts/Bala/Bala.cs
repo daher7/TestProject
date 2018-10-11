@@ -15,7 +15,9 @@ public class Bala : MonoBehaviour {
             objetivoImpacto.GetComponent<Enemigo>().RecibirDanyo(1);
         }
 
-        // Destruccion de la bala
+        // Destruccion de la bala hija, ya que el script está en ella
         Destroy(this.gameObject);
+        // Destruimos al parent
+        Destroy(transform.parent.gameObject);
     }
 }

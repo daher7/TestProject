@@ -22,11 +22,12 @@ public class CajaVida : MonoBehaviour {
     // Update is called once per frame
     void Update () {
       
-        //rotacionX = rotacionX + speedRotation;
+        rotacionX = rotacionX + speedRotation;
         rotacionY = rotacionY + speedRotation;
-        //rotacionZ = rotacionZ + speedRotation;
+        rotacionZ = rotacionZ + speedRotation;
 
         transform.rotation = Quaternion.Euler(new Vector3(rotacionX, rotacionY, rotacionZ));
+        /*
         if (subiendo) {
             deltaY++;
             transform.Translate(Vector3.up * Time.deltaTime * -1);
@@ -36,7 +37,7 @@ public class CajaVida : MonoBehaviour {
             subiendo = false;
         } else if (deltaY <= 0) {
             subiendo = true;
-        }
+        }*/
 	}
 
     private void OnTriggerEnter(Collider other) {

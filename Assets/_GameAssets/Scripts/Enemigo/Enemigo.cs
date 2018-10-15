@@ -15,13 +15,19 @@ public class Enemigo : MonoBehaviour {
     [SerializeField] protected int danyo = 2; // Daño que inflinge el enemigo
 
     [Header("REFERENCIAS")]
-    [SerializeField] protected GameObject personaje;
+    protected GameObject personaje;
     
     [Header("FX")]
-    [SerializeField] protected ParticleSystem psExplosion; // Creamos en 
+    [SerializeField] protected ParticleSystem psExplosion; // Creamos en  
 
-    // Declaración de Métodos(funciones):
-    
+
+    private void Awake() {
+
+        // Obtencion de las referencias
+        personaje = GameObject.Find("Personaje");
+    }
+
+    // Declaración de Métodos(funciones)
     public void RecibirDanyo(int danyo) {
         vida -= danyo;
 
@@ -39,6 +45,8 @@ public class Enemigo : MonoBehaviour {
          * 3. Gritos horribles de dolor/ Despedirse de la vida
          * 4. Destruir el Enemigo.
          */
+
+        // Indicamos si esta vivo o muerto 
         estaVivo = false;
         // Explosionamos al enemigo
         ParticleSystem ps = Instantiate(psExplosion, transform.position, Quaternion.identity);
@@ -48,14 +56,11 @@ public class Enemigo : MonoBehaviour {
         // Vamos a llamar a la explosion y el sistema de particulas no depende de su generador            
     }
 
-    public void Atacar() {
 
-    }
+    protected Vector3 GetDistancia() {
 
+        return personaje.transform.position - transform.position;
 
-    public int DetectarDistanciaAlPersonaje() {
-
-        return 0;
     }
 
 

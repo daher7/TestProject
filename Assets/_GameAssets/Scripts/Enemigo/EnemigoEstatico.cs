@@ -16,11 +16,19 @@ public class EnemigoEstatico : Enemigo {
     }
 
     void Update () {
+        // Vector que mide la distancia entre la torreta y el jugador
+        // Para que no cabecee, el eje X es la altura de la torreta
+        Vector3 target = new Vector3(
+            personaje.transform.position.x,
+            transform.position.y,
+            personaje.transform.position.z
+            );
+
         // Mirar al personaje
-        transform.LookAt(personaje.transform.position);
+        transform.LookAt(target);
         // Obtiene el vector distancia
         Vector3 distancia = GetDistancia();
-        print("Distancia entre los dos es de : " + distancia.magnitude);
+        //print("Distancia entre los dos es de : " + distancia.magnitude);
         // Evalua si la distancia es menor que la distancia de ataque y ataca
         if (distancia.sqrMagnitude < (distanciaAtaque * distanciaAtaque)) {
             print("ATACA");
@@ -39,7 +47,6 @@ public class EnemigoEstatico : Enemigo {
     }
 
     private void Disparar() {
-
         GameObject proyectil = Instantiate
             (prefabProyectil, 
              posGeneracionProyectil.position, 

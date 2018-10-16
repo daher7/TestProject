@@ -10,7 +10,7 @@ public class Personaje : MonoBehaviour {
 
     [Header("ESTADO")]
     [SerializeField] int vidaActual;
-    [SerializeField] int vidaMaxima;
+    [SerializeField] int vidaMaxima=15;
 
     [Header("ARSENAL")]
     [SerializeField] Arma[] armas = new Arma[NUM_ARMAS];
@@ -69,7 +69,7 @@ public class Personaje : MonoBehaviour {
 
     public void RecibirDanyo(int danyo) {
         vidaActual = vidaActual - danyo;
-
+        print("VIDA ACTUAL:" + vidaActual);
         if (vidaActual <= 0) {
             vidaActual = 0;
             Morir();

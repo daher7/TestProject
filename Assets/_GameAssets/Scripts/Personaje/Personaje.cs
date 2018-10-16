@@ -10,7 +10,7 @@ public class Personaje : MonoBehaviour {
 
     [Header("ESTADO")]
     [SerializeField] int vidaActual;
-    [SerializeField] int vidaMaxima=15;
+    [SerializeField] int vidaMaxima = 15;
 
     [Header("ARSENAL")]
     [SerializeField] Arma[] armas = new Arma[NUM_ARMAS];

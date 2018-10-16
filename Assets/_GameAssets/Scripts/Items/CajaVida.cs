@@ -13,23 +13,26 @@ public class CajaVida : MonoBehaviour {
 
     int posMax;
     int posMin;
-    
-    int rotation = 0;
-
+    int rotacion = 0;
     bool subiendo = true;
     int deltaY = 0;
 
     // Update is called once per frame
     void Update () {
-      
+
+        transform.Rotate(new Vector3(0, 1, 0));
+        
         rotacionX = rotacionX + speedRotation;
         rotacionY = rotacionY + speedRotation;
         rotacionZ = rotacionZ + speedRotation;
 
-        transform.rotation = Quaternion.Euler(new Vector3(rotacionX, rotacionY, rotacionZ));
-        /*
+        transform.rotation = Quaternion.Euler(new Vector3(rotacionX, rotacionY, rotacionZ));       
+        
         if (subiendo) {
             deltaY++;
+            transform.Translate(Vector3.up * Time.deltaTime);
+        } else {
+            deltaY--;
             transform.Translate(Vector3.up * Time.deltaTime * -1);
         }
 
@@ -37,11 +40,12 @@ public class CajaVida : MonoBehaviour {
             subiendo = false;
         } else if (deltaY <= 0) {
             subiendo = true;
-        }*/
+        }
 	}
 
     private void OnTriggerEnter(Collider other) {
 
+        // Le damos vida al personaje
         if (other.gameObject.CompareTag("Player")) {
             Personaje p = other.gameObject.GetComponent<Personaje>();
             p.IncrementarVida(vida);

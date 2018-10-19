@@ -46,7 +46,11 @@ public class CajaVida : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
 
         // Le damos vida al personaje
+        print("Antes del if");
         if (other.gameObject.CompareTag("Player")) {
+
+            print("DEspues del if");
+
             Personaje p = other.gameObject.GetComponent<Personaje>();
             p.IncrementarVida(vida);
 

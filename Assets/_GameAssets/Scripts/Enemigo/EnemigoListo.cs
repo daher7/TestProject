@@ -5,13 +5,16 @@ using UnityEngine;
 public class EnemigoListo : EnemigoMovil {
 
 	
-
-	void Start () {
-       
-	}
-	
 	
 	void Update () {
+
+        Vector3 vDistancia = GetDistancia();
+
+        if(vDistancia.magnitude < 20) {
+            this.transform.LookAt(personaje.transform.position);
+        }
+
         Avanzar();
+      
     }
 }
